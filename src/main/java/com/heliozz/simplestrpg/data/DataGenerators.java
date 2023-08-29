@@ -17,6 +17,7 @@ public class DataGenerators {
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         
-        generator.addProvider(true, new SimplestRPGItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new SimplestRPGItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeServer(), new SimplestRPGRecipeProvider(packOutput));
 	}
 }

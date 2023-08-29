@@ -22,6 +22,7 @@ public class SimplestRPGItems {
 	public static final RegistryObject<Item>
 	//Ordinary items
 		WEAK_DEMONIC_SOUL = registerBasic("weak_demonic_soul", Type.SIMPLE),
+		INFUSED_IRON_INGOT = registerBasic("infused_iron_ingot", Type.SIMPLE),
 	
 	//Equipment
 		CRIMSON_DAGGER = register("crimson_dagger", () -> new CrimsonDaggerItem(), Type.HANDHELD);
