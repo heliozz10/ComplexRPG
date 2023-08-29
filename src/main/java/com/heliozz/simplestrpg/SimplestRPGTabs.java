@@ -16,6 +16,10 @@ public class SimplestRPGTabs {
     	event.registerCreativeModeTab(ITEMS, builder -> builder
     			.title(Component.translatable("itemGroup.simplestrpg.items"))
     			.icon(() -> new ItemStack(SimplestRPGItems.CRIMSON_DAGGER.get()))
-    			.displayItems(null));
+    			.displayItems((flags, output) -> {
+    				SimplestRPGItems.ITEMS.getEntries().forEach(regObject -> {
+    					output.accept(regObject.get());
+    				});
+    			}));
     }
 }
