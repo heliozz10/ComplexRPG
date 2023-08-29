@@ -49,6 +49,7 @@ public class SimplestRPG
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(SimplestRPGEntityAttributes::addEntityAttributes);
+        modEventBus.addListener(SimplestRPGTabs::registerTabs);
     }
 
     private void addCreative(CreativeModeTabEvent.BuildContents event) {
