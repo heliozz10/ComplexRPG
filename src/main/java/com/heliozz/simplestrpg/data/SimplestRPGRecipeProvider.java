@@ -25,6 +25,7 @@ public class SimplestRPGRecipeProvider extends RecipeProvider {
 				.pattern("###")
 				.define('#', SimplestRPGItems.WEAK_DEMONIC_SOUL.get())
 				.define('I', Items.IRON_INGOT)
+				.unlockedBy("has_item", has(SimplestRPGItems.WEAK_DEMONIC_SOUL.get()))
 				.save(writer);
 	}
 }
