@@ -18,7 +18,18 @@ public class SimplestRPGItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        handheldItem(SimplestRPGItems.CRIMSON_DAGGER);
+        SimplestRPGItems.ITEMS.getEntries().forEach(regObject -> {
+        	switch(SimplestRPGItems.getMap().get(regObject.getId().getPath())) {
+			case HANDHELD:
+				handheldItem(regObject);
+				break;
+			case SIMPLE:
+				simpleItem(regObject);
+				break;
+			default:
+				throw new IllegalStateException("[SimplestRPGException, DataGeneration] Unable to generate model for: " + regObject.getId().toString());
+        	}
+        });
         
         SimplestRPGItems.SPAWN_EGGS.getEntries().forEach(regObject -> {
         	withExistingParent(regObject.getId().getPath(),
