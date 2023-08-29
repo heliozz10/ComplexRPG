@@ -17,7 +17,7 @@ public class SimplestRPGItemModelProvider extends ItemModelProvider {
     }
 
     @Override
-    protected void registerModels() {
+    protected void registerModels() throws IllegalStateException {
         SimplestRPGItems.ITEMS.getEntries().forEach(regObject -> {
         	switch(SimplestRPGItems.getMap().get(regObject.getId().getPath())) {
 			case HANDHELD:
