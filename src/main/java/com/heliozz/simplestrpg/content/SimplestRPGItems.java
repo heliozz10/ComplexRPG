@@ -1,5 +1,6 @@
 package com.heliozz.simplestrpg.content;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -12,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SimplestRPGItems {
-	private static final Map<String, Type> MAP = Map.of();
+	private static final Map<String, Type> MAP = new HashMap<String, Type>();
 	
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SimplestRPG.MODID);
 	
