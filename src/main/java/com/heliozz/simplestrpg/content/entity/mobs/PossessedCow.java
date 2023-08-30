@@ -159,10 +159,6 @@ public class PossessedCow extends Monster implements NeutralMob {
 		return this.isAngryAt(player);
 	}
 	
-	protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
-	    return 1.3F;
-	}
-	
 	public static boolean checkPossessedCowSpawnRules(EntityType<? extends PossessedCow> entity, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource source) {
 		return level.getBlockState(pos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) &&
 			level.getDifficulty() != Difficulty.PEACEFUL && 
