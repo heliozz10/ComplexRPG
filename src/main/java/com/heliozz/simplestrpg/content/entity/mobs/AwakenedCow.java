@@ -1,5 +1,9 @@
 package com.heliozz.simplestrpg.content.entity.mobs;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Pose;
@@ -15,9 +19,10 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class AwakenedCow extends Monster {
-	protected AwakenedCow(EntityType<? extends Monster> entity, Level level) {
+	protected AwakenedCow(EntityType<? extends AwakenedCow> entity, Level level) {
 		super(entity, level);
 		this.xpReward = 20;
 	}
@@ -34,6 +39,22 @@ public class AwakenedCow extends Monster {
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 	   	this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(PossessedCow.class));
 	   	this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+	}
+	
+	protected SoundEvent getAmbientSound() {
+	    return SoundEvents.COW_AMBIENT;
+	}
+
+	protected SoundEvent getHurtSound(DamageSource source) {
+	    return SoundEvents.COW_HURT;
+	}
+
+	protected SoundEvent getDeathSound() {
+	    return SoundEvents.COW_DEATH;
+	}
+	
+	protected void playStepSound(BlockPos pos, BlockState state) {
+	    this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {

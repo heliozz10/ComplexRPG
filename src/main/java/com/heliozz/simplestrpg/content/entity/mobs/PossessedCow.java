@@ -9,6 +9,8 @@ import com.heliozz.simplestrpg.content.SimplestRPGItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
@@ -36,6 +38,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class PossessedCow extends Monster implements NeutralMob {
 	private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(10, 20);
@@ -80,6 +83,22 @@ public class PossessedCow extends Monster implements NeutralMob {
 	    this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 	    this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
 	    this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, true));
+	}
+	
+	protected SoundEvent getAmbientSound() {
+	    return SoundEvents.COW_AMBIENT;
+	}
+
+	protected SoundEvent getHurtSound(DamageSource source) {
+	    return SoundEvents.COW_HURT;
+	}
+
+	protected SoundEvent getDeathSound() {
+	    return SoundEvents.COW_DEATH;
+	}
+	
+	protected void playStepSound(BlockPos pos, BlockState state) {
+	    this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
 	}
 	
 	public boolean hurt(DamageSource source, float damage) {
