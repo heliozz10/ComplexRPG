@@ -16,11 +16,13 @@ public class SimplestRPGClientEvents {
 	public static void onLayerDefinitionsRegister(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(PossessedCowModel.LAYER_LOCATION, PossessedCowModel::createBodyLayer);
 		event.registerLayerDefinition(AwakenedCowModel.LAYER_LOCATION, AwakenedCowModel::createBodyLayer);
+		event.registerLayerDefinition(StonecrawlerModel.LAYER_LOCATION, AwakenedCowModel::createBodyLayer);
 	}
 	
 	@SubscribeEvent
 	public static void onEntityRendererRegister(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(SimplestRPGMobs.POSSESSED_COW.get(), PossessedCowRenderer::new);
 		event.registerEntityRenderer(SimplestRPGMobs.AWAKENED_COW.get(), AwakenedCowRenderer::new);
+		event.registerEntityRenderer(SimplestRPGMobs.STONECRAWLER.get(), StonecrawlerRenderer::new);
 	}
 }
