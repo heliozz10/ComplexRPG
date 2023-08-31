@@ -7,10 +7,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 
-public class Entropy extends Monster {
-	private static final EntityDataAccessor<Boolean> CRAWLING_ID = SynchedEntityData.defineId(Entropy.class, EntityDataSerializers.BOOLEAN);
+public class Stonecrawler extends Monster {
+	private static final EntityDataAccessor<Boolean> CRAWLING_ID = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
 	
-	protected Entropy(EntityType<? extends Entropy> entity, Level level) {
+	protected Stonecrawler(EntityType<? extends Stonecrawler> entity, Level level) {
 		super(entity, level);
 		this.xpReward = 20;
 	}
