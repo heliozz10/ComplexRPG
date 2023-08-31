@@ -9,11 +9,10 @@ import com.mojang.logging.LogUtils;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 
 public class SimplestRPGEntityAttributes {
-	private static final Logger LOGGER = LogUtils.getLogger();
-	
 	public static void addEntityAttributes(EntityAttributeCreationEvent event) {
     	event.put(SimplestRPGMobs.POSSESSED_COW.get(), PossessedCow.createAttributes().build());
     	event.put(SimplestRPGMobs.AWAKENED_COW.get(), AwakenedCow.createAttributes().build());
+    	event.put(SimplestRPGMobs.STONECRAWLER.get(), Stonecrawler.createAttributes().build());
     }
     
 }

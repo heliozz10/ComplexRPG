@@ -1,5 +1,7 @@
 package com.heliozz.simplestrpg.client.model;
 
+import java.util.function.Supplier;
+
 import com.heliozz.simplestrpg.SimplestRPG;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -14,6 +16,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 // Made with Blockbench 4.8.3
@@ -24,7 +27,7 @@ import net.minecraft.world.entity.Entity;
 public class StonecrawlerModel<T extends Entity> extends EntityModel<T> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(SimplestRPG.MODID, "stonecrawler"), "main");
 	private final ModelPart body;
-
+	
 	public StonecrawlerModel(ModelPart root) {
 		this.body = root.getChild("body");
 	}
@@ -82,7 +85,6 @@ public class StonecrawlerModel<T extends Entity> extends EntityModel<T> {
 
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		
 	}
 
 	@Override
