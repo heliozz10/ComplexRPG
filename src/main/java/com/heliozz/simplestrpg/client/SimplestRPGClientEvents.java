@@ -1,9 +1,12 @@
 package com.heliozz.simplestrpg.client;
 
+import org.slf4j.Logger;
+
 import com.heliozz.simplestrpg.SimplestRPG;
 import com.heliozz.simplestrpg.client.model.*;
 import com.heliozz.simplestrpg.client.render.*;
 import com.heliozz.simplestrpg.content.entity.mobs.SimplestRPGMobs;
+import com.mojang.logging.LogUtils;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -12,11 +15,12 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = SimplestRPG.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SimplestRPGClientEvents {
+	private static final Logger LOGGER = LogUtils.getLogger();
 	@SubscribeEvent
 	public static void onLayerDefinitionsRegister(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(PossessedCowModel.LAYER_LOCATION, PossessedCowModel::createBodyLayer);
 		event.registerLayerDefinition(AwakenedCowModel.LAYER_LOCATION, AwakenedCowModel::createBodyLayer);
-		event.registerLayerDefinition(StonecrawlerModel.LAYER_LOCATION, AwakenedCowModel::createBodyLayer);
+		event.registerLayerDefinition(StonecrawlerModel.LAYER_LOCATION, StonecrawlerModel::createBodyLayer);
 	}
 	
 	@SubscribeEvent
