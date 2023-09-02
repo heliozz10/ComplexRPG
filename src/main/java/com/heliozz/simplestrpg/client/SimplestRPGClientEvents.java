@@ -25,6 +25,7 @@ public class SimplestRPGClientEvents {
 	
 	@SubscribeEvent
 	public static void onEntityRendererRegister(EntityRenderersEvent.RegisterRenderers event) {
+		
 		event.registerEntityRenderer(SimplestRPGMobs.POSSESSED_COW.get(), PossessedCowRenderer::new);
 		event.registerEntityRenderer(SimplestRPGMobs.AWAKENED_COW.get(), AwakenedCowRenderer::new);
 		event.registerEntityRenderer(SimplestRPGMobs.STONECRAWLER.get(), StonecrawlerRenderer::new);
