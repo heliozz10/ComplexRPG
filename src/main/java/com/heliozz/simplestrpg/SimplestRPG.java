@@ -2,6 +2,7 @@ package com.heliozz.simplestrpg;
 
 import org.slf4j.Logger;
 
+import com.heliozz.simplestrpg.client.SimplestRPGClientEvents;
 import com.heliozz.simplestrpg.content.SimplestRPGBlocks;
 import com.heliozz.simplestrpg.content.SimplestRPGItems;
 import com.heliozz.simplestrpg.content.entity.SimplestRPGEntityAttributes;

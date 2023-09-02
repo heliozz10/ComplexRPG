@@ -3,8 +3,12 @@ package com.heliozz.simplestrpg.client;
 import org.slf4j.Logger;
 
 import com.heliozz.simplestrpg.SimplestRPG;
-import com.heliozz.simplestrpg.client.model.*;
-import com.heliozz.simplestrpg.client.render.*;
+import com.heliozz.simplestrpg.client.model.AwakenedCowModel;
+import com.heliozz.simplestrpg.client.model.PossessedCowModel;
+import com.heliozz.simplestrpg.client.model.StonecrawlerModel;
+import com.heliozz.simplestrpg.client.render.AwakenedCowRenderer;
+import com.heliozz.simplestrpg.client.render.PossessedCowRenderer;
+import com.heliozz.simplestrpg.client.render.StonecrawlerRenderer;
 import com.heliozz.simplestrpg.content.entity.mobs.SimplestRPGMobs;
 import com.mojang.logging.LogUtils;
 
@@ -25,7 +29,6 @@ public class SimplestRPGClientEvents {
 	
 	@SubscribeEvent
 	public static void onEntityRendererRegister(EntityRenderersEvent.RegisterRenderers event) {
-		
 		event.registerEntityRenderer(SimplestRPGMobs.POSSESSED_COW.get(), PossessedCowRenderer::new);
 		event.registerEntityRenderer(SimplestRPGMobs.AWAKENED_COW.get(), AwakenedCowRenderer::new);
 		event.registerEntityRenderer(SimplestRPGMobs.STONECRAWLER.get(), StonecrawlerRenderer::new);
