@@ -1,5 +1,7 @@
 package com.heliozz.simplestrpg.client;
 
+import java.util.Arrays;
+
 import org.joml.Vector3f;
 import org.slf4j.Logger;
 
@@ -25,8 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = SimplestRPG.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeClientEventsSRPG {
 	private static final Logger LOGGER = LogUtils.getLogger();
-	private static Minecraft minecraft = Minecraft.getInstance();
-	private static final ResourceLocation TEST_LOCATION = new ResourceLocation("textures/gui/container/creative_inventory/tab_inventory.png");
+	private static final ResourceLocation TEST_LOCATION = new ResourceLocation(SimplestRPG.MODID, "textures/misc/test.png");
 	
 	@SubscribeEvent
 	public static void onLevelRenderTest(RenderLevelStageEvent event) {
@@ -35,21 +36,30 @@ public class ForgeClientEventsSRPG {
 			RenderSystem.setShaderTexture(0, TEST_LOCATION);
 			RenderSystem.enableBlend();
 			Vector3f view = event.getCamera().getPosition().toVector3f();
+			Minecraft minecraft = Minecraft.getInstance();
+			float realTicks = minecraft.getPartialTick() + minecraft.level.getGameTime();
 			PoseStack poseStack = event.getPoseStack();
-			poseStack.pushPose();
 			Tesselator tesselator = Tesselator.getInstance();
             BufferBuilder vertexConsumer = tesselator.getBuilder();
+
+			Vector3f[] pos = {new Vector3f(1.0F, 101.0F, -1.0F),
+								new Vector3f(1.0F, 99.0F, -1.0F),
+								new Vector3f(-1.0F, 99.0F, -1.0F),
+								new Vector3f(-1.0F, 101.0F, -1.0F)};
+			
             vertexConsumer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-			Vector3f pos1 = new Vector3f(-1.0F, 100.0F, -1.0F);
-			Vector3f pos2 = new Vector3f(1.0F, 100.0F, -1.0F);
-			Vector3f pos3 = new Vector3f(1.0F, 100.0F, 1.0F);
-			Vector3f pos4 = new Vector3f(-1.0F, 100.0F, 1.0F);
-			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos4).uv(0.0F, 0.0F).endVertex();
-			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos3).uv(1.0F, 0.0F).endVertex();
-			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos2).uv(1.0F, 1.0F).endVertex();
-			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos1).uv(0.0F, 1.0F).endVertex();
+            
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[0]).uv(0.0F, 0.0F).endVertex();
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[1]).uv(0.0F, 1.0F).endVertex();
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[2]).uv(1.0F, 1.0F).endVertex();
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[3]).uv(1.0F, 0.0F).endVertex();
+			
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[3]).uv(1.0F, 0.0F).endVertex();
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[2]).uv(1.0F, 1.0F).endVertex();
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[1]).uv(0.0F, 1.0F).endVertex();
+			ClientUtil.vec3fVertex(view, poseStack, vertexConsumer, pos[0]).uv(0.0F, 0.0F).endVertex();
+			
 			BufferUploader.drawWithShader(vertexConsumer.end());
-			poseStack.popPose();
 			RenderSystem.disableBlend();
 		}
 	}
