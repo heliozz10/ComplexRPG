@@ -11,11 +11,15 @@ public class ClientUtil {
 		Vector3f direction = (new Vector3f(pos2)).sub(pos1).normalize();
 		vertexConsumer.vertex(poseStack.last().pose(), pos1.x - view.x, pos1.y - view.y, pos1.z - view.z)
 						.color(color1.x, color1.y, color1.z, color1.w)
-						.normal(poseStack.last().normal(), -direction.x, -direction.y, -direction.z)
+						.normal(poseStack.last().normal(), direction.x, direction.y, direction.z)
 						.endVertex();
 		vertexConsumer.vertex(poseStack.last().pose(), pos2.x - view.x, pos2.y - view.y, pos2.z - view.z)
 						.color(color2.x, color2.y, color2.z, color2.w)
 						.normal(poseStack.last().normal(), direction.x, direction.y, direction.z)
 						.endVertex();
+	}
+	
+	public static VertexConsumer vec3fVertex(Vector3f view,PoseStack poseStack, VertexConsumer vertexConsumer, Vector3f pos) {
+		return vertexConsumer.vertex(poseStack.last().pose(), pos.x - view.x, pos.y - view.y, pos.z - view.z);
 	}
 }
