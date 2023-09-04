@@ -20,7 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class Stonecrawler extends Monster {
-	private static final EntityDataAccessor<Boolean> CRAWLING_ID = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDataAccessor<Boolean> DATA_CRAWLING = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
 	
 	protected Stonecrawler(EntityType<? extends Stonecrawler> entity, Level level) {
 		super(entity, level);
