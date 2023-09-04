@@ -1,7 +1,5 @@
 package com.heliozz.simplestrpg.client;
 
-import java.util.Arrays;
-
 import org.joml.Vector3f;
 import org.slf4j.Logger;
 
