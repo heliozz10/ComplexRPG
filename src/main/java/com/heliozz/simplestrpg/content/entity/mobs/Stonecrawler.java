@@ -30,6 +30,7 @@ public class Stonecrawler extends Monster {
 	private static final AttributeModifier SPEED_MODIFIER_2_PHASE = new AttributeModifier(SPEED_MODIFIER_2_PHASE_UUID, "2 phase speed boost", 0.07D, AttributeModifier.Operation.ADDITION);
 	private static final AttributeModifier DAMAGE_MODIFIER_2_PHASE = new AttributeModifier(DAMAGE_MODIFIER_2_PHASE_UUID, "2 phase damage boost", 2.0D, AttributeModifier.Operation.ADDITION);
 	private static final EntityDataAccessor<Boolean> DATA_CRAWLING = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
+	private static final EntityDimensions REDUCED_HITBOX;
 	
 	protected Stonecrawler(EntityType<? extends Stonecrawler> entity, Level level) {
 		super(entity, level);
@@ -59,6 +60,15 @@ public class Stonecrawler extends Monster {
 			damage.addTransientModifier(DAMAGE_MODIFIER_2_PHASE);
 		}
 		return flag;
+	}
+	
+	public void setCrawling(boolean value) {
+		this.getEntityData().set(DATA_CRAWLING, value);
+		this.refreshDimensions();
+	}
+	
+	public EntityDimensions getDimensions(Pose pose) {
+		return this.getEntityData().get(DATA_CRAWLING) ? 
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {
