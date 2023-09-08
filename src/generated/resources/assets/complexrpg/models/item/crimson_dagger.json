@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "simplestrpg:item/crimson_dagger"
+    "layer0": "complexrpg:item/crimson_dagger"
   }
 }

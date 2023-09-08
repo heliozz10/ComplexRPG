@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "simplestrpg:weak_demonic_soul"
+              "complexrpg:weak_demonic_soul"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "simplestrpg:infused_iron_ingot"
+        "recipe": "complexrpg:infused_iron_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "simplestrpg:infused_iron_ingot"
+      "complexrpg:infused_iron_ingot"
     ]
   }
 }

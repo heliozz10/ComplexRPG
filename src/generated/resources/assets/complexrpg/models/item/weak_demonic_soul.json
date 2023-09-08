@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "simplestrpg:item/infused_iron_ingot"
+    "layer0": "complexrpg:item/weak_demonic_soul"
   }
 }

@@ -21,7 +21,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(ComplexRPG.MODID)
 public class ComplexRPG
 {
-    public static final String MODID = "simplestrpg";
+    public static final String MODID = "complexrpg";
     private static final Logger LOGGER = LogUtils.getLogger();
     
     public ComplexRPG() {
