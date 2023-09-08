@@ -114,7 +114,7 @@ public class StonecrawlerMeleeAttackGoal extends Goal {
     		}
     		
     		this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
-    		this.checkAndPerformAttack(target, ticksUntilNextAttack);
+    		this.checkAndPerformAttack(target, this.mob.distanceToSqr(target));
     	}
     }
     
