@@ -37,7 +37,7 @@ public class Stonecrawler extends Monster {
 	private static final AttributeModifier SPEED_MODIFIER_2_PHASE = new AttributeModifier(SPEED_MODIFIER_2_PHASE_UUID, "2 phase speed boost", 0.07D, AttributeModifier.Operation.ADDITION);
 	private static final AttributeModifier DAMAGE_MODIFIER_2_PHASE = new AttributeModifier(DAMAGE_MODIFIER_2_PHASE_UUID, "2 phase damage boost", 2.0D, AttributeModifier.Operation.ADDITION);
 	private static final EntityDataAccessor<Boolean> DATA_CRAWLING_ID = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
-	private final EntityDimensions REDUCED_HITBOX = EntityDimensions.scalable(0.8F, 0.8F);
+	private static final EntityDimensions REDUCED_HITBOX = EntityDimensions.scalable(0.8F, 0.8F);
 	
 	private boolean isInSecondPhase = false;
 	
@@ -87,8 +87,11 @@ public class Stonecrawler extends Monster {
 	
 	public void tick() {
 		if(!this.level.isClientSide) {
-			if(this.level.getGameTime() % 20 == 0) LOGGER.info(this.blockPosition().relative(getDirection()).toShortString());
-			if(this.level.getGameTime() % 20 == 0) LOGGER.info(this.getDimensions(this.getPose()).toString());
+			if(this.level.getGameTime() % 20 == 0) {
+				LOGGER.info("Direction: " + this.getDirection().name());
+				LOGGER.info(this.blockPosition().relative(getDirection()).toShortString());
+				LOGGER.info(this.getDimensions(this.getPose()).toString());
+			}
 			if(this.level.getBlockState(this.blockPosition().above()).getMaterial().isSolid() && this.onGround)
 				this.setCrawling(true);
 			else if(this.level.getGameTime() % 100 == 0) 
@@ -97,10 +100,8 @@ public class Stonecrawler extends Monster {
 		super.tick();
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void setCrawling(boolean value) {
 		this.entityData.set(DATA_CRAWLING_ID, value);
-		this.fixupDimensions();
 		this.refreshDimensions();
 	}
 	
