@@ -36,13 +36,14 @@ public class Stonecrawler extends Monster {
 	private static final UUID DAMAGE_MODIFIER_2_PHASE_UUID = UUID.fromString("4A400C00-4D5E-11EE-A4BB-C7E213CD602B");
 	private static final AttributeModifier SPEED_MODIFIER_2_PHASE = new AttributeModifier(SPEED_MODIFIER_2_PHASE_UUID, "2 phase speed boost", 0.07D, AttributeModifier.Operation.ADDITION);
 	private static final AttributeModifier DAMAGE_MODIFIER_2_PHASE = new AttributeModifier(DAMAGE_MODIFIER_2_PHASE_UUID, "2 phase damage boost", 2.0D, AttributeModifier.Operation.ADDITION);
-	private static final EntityDataAccessor<Boolean> DATA_CRAWLING = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDimensions REDUCED_HITBOX = new EntityDimensions(0.9F, 0.8F, false);
+	private static final EntityDataAccessor<Boolean> DATA_CRAWLING_ID = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
+	private final EntityDimensions REDUCED_HITBOX = EntityDimensions.scalable(0.8F, 0.8F);
 	
 	private boolean isInSecondPhase = false;
 	
 	protected Stonecrawler(EntityType<? extends Stonecrawler> entity, Level level) {
 		super(entity, level);
+		this.refreshDimensions();
 		this.xpReward = 20;
 	}
 	
@@ -54,7 +55,7 @@ public class Stonecrawler extends Monster {
 	}
 
 	protected void addBehaviourGoals() {
-		this.goalSelector.addGoal(2, new StonecrawlerMeleeAttackGoal(this, false));
+		this.goalSelector.addGoal(2, new StonecrawlerMeleeAttackGoal(this, true));
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 	   	this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
 	   	this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
@@ -86,7 +87,9 @@ public class Stonecrawler extends Monster {
 	
 	public void tick() {
 		if(!this.level.isClientSide) {
-			if(this.level.getBlockState(this.blockPosition().above()).getMaterial().isSolid())
+			if(this.level.getGameTime() % 20 == 0) LOGGER.info(this.blockPosition().relative(getDirection()).toShortString());
+			if(this.level.getGameTime() % 20 == 0) LOGGER.info(this.getDimensions(this.getPose()).toString());
+			if(this.level.getBlockState(this.blockPosition().above()).getMaterial().isSolid() && this.onGround)
 				this.setCrawling(true);
 			else if(this.level.getGameTime() % 100 == 0) 
 				this.setCrawling(false);
@@ -94,17 +97,19 @@ public class Stonecrawler extends Monster {
 		super.tick();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void setCrawling(boolean value) {
-		this.getEntityData().set(DATA_CRAWLING, value);
+		this.entityData.set(DATA_CRAWLING_ID, value);
+		this.fixupDimensions();
 		this.refreshDimensions();
 	}
 	
 	public boolean isCrawling() {
-		return this.getEntityData().get(DATA_CRAWLING);
+		return this.getEntityData().get(DATA_CRAWLING_ID);
 	}
 	
 	public EntityDimensions getDimensions(Pose pose) {
-		return this.getEntityData().get(DATA_CRAWLING) ? REDUCED_HITBOX : this.getType().getDimensions(); 
+		return this.isCrawling() ? REDUCED_HITBOX : super.getDimensions(pose); 
 	}
 	
 	public static AttributeSupplier.Builder createAttributes() {
@@ -117,7 +122,7 @@ public class Stonecrawler extends Monster {
 	
 	protected void defineSynchedData() {
 	    super.defineSynchedData();
-	    this.getEntityData().define(DATA_CRAWLING, false);
+	    this.entityData.define(DATA_CRAWLING_ID, false);
 	}
 	
 	protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {

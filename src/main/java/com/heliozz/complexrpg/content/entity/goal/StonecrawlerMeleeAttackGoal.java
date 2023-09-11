@@ -1,6 +1,11 @@
 package com.heliozz.complexrpg.content.entity.goal;
 
+import java.util.EnumSet;
+
+import org.slf4j.Logger;
+
 import com.heliozz.complexrpg.content.entity.mobs.Stonecrawler;
+import com.mojang.logging.LogUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -13,6 +18,7 @@ import net.minecraft.world.level.pathfinder.Path;
 public class StonecrawlerMeleeAttackGoal extends Goal {
 	protected final Stonecrawler mob;
 	private final boolean followingTargetEvenIfNotSeen;
+	private static final Logger LOGGER = LogUtils.getLogger();
 	
 	private Path path;
 	private long lastCanUseCheck = 0;
@@ -22,19 +28,24 @@ public class StonecrawlerMeleeAttackGoal extends Goal {
 	public StonecrawlerMeleeAttackGoal(Stonecrawler mob, boolean followingTargetEvenIfNotSeen) {
 		this.mob = mob;
 		this.followingTargetEvenIfNotSeen = followingTargetEvenIfNotSeen;
+		this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 	}
 	
 	
 	@Override
 	public boolean canUse() {
 		long ticks = this.mob.level.getGameTime();
-		LivingEntity target = this.mob.getTarget();
-
+		
         if (ticks - lastCanUseCheck < 20L) {
             return false;
         }
         
         lastCanUseCheck = ticks;
+        
+        LivingEntity target = this.mob.getTarget();
+        if(target == null) {
+        	return false;
+        }
         
         this.path = this.mob.getNavigation().createPath(target, 0);
         
@@ -95,8 +106,10 @@ public class StonecrawlerMeleeAttackGoal extends Goal {
     public void tick() {
     	LivingEntity target = this.mob.getTarget();
     	if(target != null) {
+    		this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
     		ticksUntilNextPathRecalculation--;
     		if(ticksUntilNextPathRecalculation <= 0) {
+    			ticksUntilNextPathRecalculation = 40;
     			this.path = this.mob.getNavigation().createPath(target, 0);
     		
     			if(this.path == null && !this.mob.isCrawling()) {

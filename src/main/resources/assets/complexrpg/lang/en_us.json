@@ -1,0 +1,14 @@
+{
+	//Entities
+	"entity.complexrpg.possessed_cow" : "Cow",
+	"entity.complexrpg.awakened_cow" : "Cow",
+	
+	//Items
+	"item.complexrpg.crimson_dagger" : "Crimson Dagger",
+	"item.complexrpg.weak_demonic_soul" : "Weak Demonic Soul",
+	
+	//Tooltips
+	"tooltip.complexrpg.crimson_dagger" : "Reveals the true face of the evil creatures..."
+	
+	//Extra
+}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.heliozz.complexrpg.ComplexRPG;
 import com.heliozz.complexrpg.enums.SimplestRPGTiers;
 
 import net.minecraft.ChatFormatting;
@@ -23,6 +24,6 @@ public class CrimsonDaggerItem extends SwordItem {
 	
 	@OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(Component.translatable("tooltip.simplestrpg.crimson_dagger").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        tooltip.add(Component.translatable("tooltip." + ComplexRPG.MODID + ".crimson_dagger").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 }

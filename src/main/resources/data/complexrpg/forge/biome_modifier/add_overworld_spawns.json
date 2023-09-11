@@ -3,7 +3,7 @@
   	"biomes": "#minecraft:is_overworld",
   	"spawners":
   	{
-    	"type": "simplestrpg:possessed_cow",
+    	"type": "complexrpg:possessed_cow",
     	"weight": 30,
    	 	"minCount": 2,
     	"maxCount": 4
