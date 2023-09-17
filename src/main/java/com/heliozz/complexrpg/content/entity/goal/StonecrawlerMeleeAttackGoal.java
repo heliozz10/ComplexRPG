@@ -2,10 +2,7 @@ package com.heliozz.complexrpg.content.entity.goal;
 
 import java.util.EnumSet;
 
-import org.slf4j.Logger;
-
 import com.heliozz.complexrpg.content.entity.mobs.Stonecrawler;
-import com.mojang.logging.LogUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -18,11 +15,10 @@ import net.minecraft.world.level.pathfinder.Path;
 public class StonecrawlerMeleeAttackGoal extends Goal {
 	protected final Stonecrawler mob;
 	private final boolean followingTargetEvenIfNotSeen;
-	private static final Logger LOGGER = LogUtils.getLogger();
 	
 	private Path path;
 	private long lastCanUseCheck = 0;
-	private int ticksUntilNextPathRecalculation = 40;
+	private int ticksUntilNextPathRecalculation = 10;
 	private int ticksUntilNextAttack;
 	
 	public StonecrawlerMeleeAttackGoal(Stonecrawler mob, boolean followingTargetEvenIfNotSeen) {
@@ -56,7 +52,7 @@ public class StonecrawlerMeleeAttackGoal extends Goal {
         boolean canAttack = getAttackReachSqr(target) >= this.mob.distanceToSqr(target);
         if(canAttack) return true;
         
-        this.mob.setCrawling(true);
+        if(!this.mob.isCrawling()) this.mob.setCrawling(true);
         this.path = mob.getNavigation().createPath(target, 0);
         
         return path != null;
@@ -109,10 +105,13 @@ public class StonecrawlerMeleeAttackGoal extends Goal {
     		this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
     		ticksUntilNextPathRecalculation--;
     		if(ticksUntilNextPathRecalculation <= 0) {
-    			ticksUntilNextPathRecalculation = 40;
+    			ticksUntilNextPathRecalculation = 10;
     			this.path = this.mob.getNavigation().createPath(target, 0);
+    			boolean flag;
+    			if(this.path == null) flag = false;
+    			else flag = this.path.canReach();
     		
-    			if(this.path == null && !this.mob.isCrawling()) {
+    			if((!flag || this.path == null) && !this.mob.isCrawling()) {
     				BlockPos pos = this.mob.blockPosition();
     				boolean condition1 = this.mob.level.getBlockState(pos.relative(this.mob.getDirection())).getMaterial().isSolid();
     				boolean condition2 = this.mob.level.getBlockState(pos.relative(this.mob.getDirection()).above()).getMaterial().isSolid();

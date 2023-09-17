@@ -2,11 +2,11 @@ package com.heliozz.complexrpg;
 
 import org.slf4j.Logger;
 
-import com.heliozz.complexrpg.client.ComplexRPGClientEvents;
 import com.heliozz.complexrpg.content.ComplexRPGBlocks;
 import com.heliozz.complexrpg.content.ComplexRPGItems;
 import com.heliozz.complexrpg.content.entity.ComplexRPGEntityAttributes;
 import com.heliozz.complexrpg.content.entity.mobs.ComplexRPGMobs;
+import com.heliozz.complexrpg.network.ComplexRPGPacketHandler;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.world.item.CreativeModeTabs;
@@ -49,6 +49,6 @@ public class ComplexRPG
     }
     
     private void commonSetup(final FMLCommonSetupEvent event) {
-    	
+    	ComplexRPGPacketHandler.register();
     }
 }
