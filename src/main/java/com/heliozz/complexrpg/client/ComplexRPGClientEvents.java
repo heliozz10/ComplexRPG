@@ -3,13 +3,8 @@ package com.heliozz.complexrpg.client;
 import org.slf4j.Logger;
 
 import com.heliozz.complexrpg.ComplexRPG;
-import com.heliozz.complexrpg.client.model.AwakenedCowModel;
-import com.heliozz.complexrpg.client.model.PossessedCowModel;
-import com.heliozz.complexrpg.client.model.SoulmiteModel;
-import com.heliozz.complexrpg.client.model.StonecrawlerModel;
-import com.heliozz.complexrpg.client.render.AwakenedCowRenderer;
-import com.heliozz.complexrpg.client.render.PossessedCowRenderer;
-import com.heliozz.complexrpg.client.render.StonecrawlerRenderer;
+import com.heliozz.complexrpg.client.model.*;
+import com.heliozz.complexrpg.client.render.*;
 import com.heliozz.complexrpg.content.entity.mobs.ComplexRPGMobs;
 import com.mojang.logging.LogUtils;
 
