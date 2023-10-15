@@ -1,12 +1,9 @@
 package com.heliozz.complexrpg.client.model;
 
-import org.slf4j.Logger;
-
 import com.heliozz.complexrpg.ComplexRPG;
 import com.heliozz.complexrpg.content.entity.mobs.Stonecrawler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.logging.LogUtils;
 
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -26,7 +23,6 @@ import net.minecraft.util.Mth;
 
 
 public class StonecrawlerModel<T extends Stonecrawler> extends EntityModel<T> {
-	private static final Logger LOGGER = LogUtils.getLogger();
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(ComplexRPG.MODID, "stonecrawler"), "main");
 	private final ModelPart 
 		body, 

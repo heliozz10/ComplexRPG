@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import com.heliozz.complexrpg.ComplexRPG;
 import com.heliozz.complexrpg.client.model.AwakenedCowModel;
 import com.heliozz.complexrpg.client.model.PossessedCowModel;
+import com.heliozz.complexrpg.client.model.SoulmiteModel;
 import com.heliozz.complexrpg.client.model.StonecrawlerModel;
 import com.heliozz.complexrpg.client.render.AwakenedCowRenderer;
 import com.heliozz.complexrpg.client.render.PossessedCowRenderer;
@@ -25,6 +26,7 @@ public class ComplexRPGClientEvents {
 		event.registerLayerDefinition(PossessedCowModel.LAYER_LOCATION, PossessedCowModel::createBodyLayer);
 		event.registerLayerDefinition(AwakenedCowModel.LAYER_LOCATION, AwakenedCowModel::createBodyLayer);
 		event.registerLayerDefinition(StonecrawlerModel.LAYER_LOCATION, StonecrawlerModel::createBodyLayer);
+		event.registerLayerDefinition(SoulmiteModel.LAYER_LOCATION, StonecrawlerModel::createBodyLayer);
 	}
 	
 	@SubscribeEvent
@@ -32,5 +34,6 @@ public class ComplexRPGClientEvents {
 		event.registerEntityRenderer(ComplexRPGMobs.POSSESSED_COW.get(), PossessedCowRenderer::new);
 		event.registerEntityRenderer(ComplexRPGMobs.AWAKENED_COW.get(), AwakenedCowRenderer::new);
 		event.registerEntityRenderer(ComplexRPGMobs.STONECRAWLER.get(), StonecrawlerRenderer::new);
+		event.registerEntityRenderer(ComplexRPGMobs.SOULMITE.get(), SoulmiteRenderer::new);
 	}
 }

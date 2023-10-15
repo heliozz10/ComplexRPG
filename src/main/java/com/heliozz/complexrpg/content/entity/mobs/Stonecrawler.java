@@ -11,7 +11,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -29,11 +28,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class Stonecrawler extends Monster {
-	private static final UUID SPEED_MODIFIER_CHANGING_POSES_UUID = UUID.fromString("02B16BA0-555F-11EE-A297-A9AF7100D322");
 	private static final UUID SPEED_MODIFIER_2_PHASE_UUID = UUID.fromString("45A40252-6010-4692-8751-47FB9E65BD7B");
-	private static final UUID DAMAGE_MODIFIER_2_PHASE_UUID = UUID.fromString("4A400C00-4D5E-11EE-A4BB-C7E213CD602B");
-	private static final AttributeModifier SPEED_MODIFIER_CHANGING_POSES = new AttributeModifier(SPEED_MODIFIER_CHANGING_POSES_UUID, "Changing poses speed reduction", 0.0D, AttributeModifier.Operation.MULTIPLY_TOTAL);
-	private static final AttributeModifier SPEED_MODIFIER_2_PHASE = new AttributeModifier(SPEED_MODIFIER_2_PHASE_UUID, "2 phase speed boost", 0.07D, AttributeModifier.Operation.ADDITION);
+	private static final UUID DAMAGE_MODIFIER_2_PHASE_UUID = UUID.fromString("4A400C00-4D5E-11EE-A4BB-C7E213CD602B");private static final AttributeModifier SPEED_MODIFIER_2_PHASE = new AttributeModifier(SPEED_MODIFIER_2_PHASE_UUID, "2 phase speed boost", 0.07D, AttributeModifier.Operation.ADDITION);
 	private static final AttributeModifier DAMAGE_MODIFIER_2_PHASE = new AttributeModifier(DAMAGE_MODIFIER_2_PHASE_UUID, "2 phase damage boost", 2.0D, AttributeModifier.Operation.ADDITION);
 	private static final EntityDataAccessor<Boolean> DATA_CRAWLING_ID = SynchedEntityData.defineId(Stonecrawler.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDimensions REDUCED_HITBOX = EntityDimensions.scalable(0.8F, 0.8F);
@@ -41,7 +37,6 @@ public class Stonecrawler extends Monster {
 	private long startedCrawlingTick = -1;
 	private long stoppedCrawlingTick = -1;
 	private boolean isInSecondPhase = false;
-	private byte speedTimer = 0;
 	
 	protected Stonecrawler(EntityType<? extends Stonecrawler> entity, Level level) {
 		super(entity, level);
