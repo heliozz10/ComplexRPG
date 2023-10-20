@@ -21,8 +21,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class Soulmite extends Monster{
-	protected Soulmite(EntityType<? extends AwakenedCow> entity, Level level) {
+public class Soulmite extends Monster {
+	protected Soulmite(EntityType<? extends Soulmite> entity, Level level) {
 		super(entity, level);
 		this.xpReward = 20;
 	}

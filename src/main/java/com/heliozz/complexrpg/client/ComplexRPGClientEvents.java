@@ -21,7 +21,7 @@ public class ComplexRPGClientEvents {
 		event.registerLayerDefinition(PossessedCowModel.LAYER_LOCATION, PossessedCowModel::createBodyLayer);
 		event.registerLayerDefinition(AwakenedCowModel.LAYER_LOCATION, AwakenedCowModel::createBodyLayer);
 		event.registerLayerDefinition(StonecrawlerModel.LAYER_LOCATION, StonecrawlerModel::createBodyLayer);
-		event.registerLayerDefinition(SoulmiteModel.LAYER_LOCATION, StonecrawlerModel::createBodyLayer);
+		event.registerLayerDefinition(SoulmiteModel.LAYER_LOCATION, SoulmiteModel::createBodyLayer);
 	}
 	
 	@SubscribeEvent

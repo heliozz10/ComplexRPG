@@ -22,7 +22,7 @@ public class ComplexRPGEvents {
 	
 	@SubscribeEvent
 	public static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
-		LOGGER.info("Registered SimplestRPG spawn placements");
+		LOGGER.info("Registered " + ComplexRPG.MODID + " spawn placements");
 		registerOnGroundMob(event, POSSESSED_COW.get(), PossessedCow::checkPossessedCowSpawnRules);
 	}
 	
