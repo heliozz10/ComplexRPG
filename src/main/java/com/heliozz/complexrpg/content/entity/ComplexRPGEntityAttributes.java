@@ -10,6 +10,6 @@ public class ComplexRPGEntityAttributes {
     	event.put(ComplexRPGMobs.AWAKENED_COW.get(), AwakenedCow.createAttributes().build());
     	event.put(ComplexRPGMobs.STONECRAWLER.get(), Stonecrawler.createAttributes().build());
     	event.put(ComplexRPGMobs.SOULMITE.get(), Soulmite.createAttributes().build());
+    	event.put(ComplexRPGMobs.HARPOONER.get(), Harpooner.createAttributes().build());
     }
-    
 }

@@ -8,6 +8,9 @@ import com.heliozz.complexrpg.client.render.*;
 import com.heliozz.complexrpg.content.entity.mobs.ComplexRPGMobs;
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,6 +25,7 @@ public class ComplexRPGClientEvents {
 		event.registerLayerDefinition(AwakenedCowModel.LAYER_LOCATION, AwakenedCowModel::createBodyLayer);
 		event.registerLayerDefinition(StonecrawlerModel.LAYER_LOCATION, StonecrawlerModel::createBodyLayer);
 		event.registerLayerDefinition(SoulmiteModel.LAYER_LOCATION, SoulmiteModel::createBodyLayer);
+		event.registerLayerDefinition(HarpoonerModel.LAYER_LOCATION, () -> LayerDefinition.create(HumanoidModel.createMesh(CubeDeformation.NONE, 0.0F), 64, 64));
 	}
 	
 	@SubscribeEvent
@@ -30,5 +34,6 @@ public class ComplexRPGClientEvents {
 		event.registerEntityRenderer(ComplexRPGMobs.AWAKENED_COW.get(), AwakenedCowRenderer::new);
 		event.registerEntityRenderer(ComplexRPGMobs.STONECRAWLER.get(), StonecrawlerRenderer::new);
 		event.registerEntityRenderer(ComplexRPGMobs.SOULMITE.get(), SoulmiteRenderer::new);
+		event.registerEntityRenderer(ComplexRPGMobs.HARPOONER.get(), HarpoonerRenderer::new);
 	}
 }

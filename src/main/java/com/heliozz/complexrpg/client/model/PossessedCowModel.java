@@ -1,6 +1,7 @@
 package com.heliozz.complexrpg.client.model;
 
 import com.heliozz.complexrpg.ComplexRPG;
+import com.heliozz.complexrpg.content.entity.mobs.PossessedCow;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -13,16 +14,14 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
 // Made with Blockbench 4.6.5
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
-public class PossessedCowModel<T extends Entity> extends EntityModel<T> {
+public class PossessedCowModel<T extends PossessedCow> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(ComplexRPG.MODID, "possessed_cow"), "main");
 	private final ModelPart body;

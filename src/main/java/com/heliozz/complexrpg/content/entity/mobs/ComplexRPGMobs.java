@@ -21,6 +21,7 @@ public class ComplexRPGMobs {
 	public static final RegistryObject<EntityType<AwakenedCow>> AWAKENED_COW = registerEntity(AwakenedCow::new, "awakened_cow", 0.9F, 1.4F, 0xFFFFFF, 0xFFFFFF, MobCategory.MONSTER);
 	public static final RegistryObject<EntityType<Stonecrawler>> STONECRAWLER = registerEntity(Stonecrawler::new, "stonecrawler", 0.8F, 1.6F, 0xFFFFFF, 0xFFFFFF, MobCategory.MONSTER);
 	public static final RegistryObject<EntityType<Soulmite>> SOULMITE = registerEntity(Soulmite::new, "soulmite", 0.5F, 0.4F, 0xFFFFFF, 0xFFFFFF, MobCategory.MONSTER);
+	public static final RegistryObject<EntityType<Harpooner>> HARPOONER = registerEntity(Harpooner::new, "harpooner", 0.6F, 1.8F, 0xFFFFFF, 0xFFFFFF, MobCategory.MONSTER);
 	
 	private static final <T extends Mob> RegistryObject<EntityType<T>> registerEntity(EntityFactory<T> factory, String name, float width, float height, int primaryColor, int secondColor, MobCategory category) {
         RegistryObject<EntityType<T>> entity = MOBS.register(name, () -> EntityType.Builder.of(factory, category).sized(width, height).build(new ResourceLocation(ComplexRPG.MODID, name).toString()));
